@@ -7,6 +7,7 @@ import { fetchProductDetails } from "./slice/productDetails";
 const ProductDetails = () => {
   const { id } = useParams();
   const {details, loading} = useSelector((state) => state.productDetails);
+  const [mainImage, setMainImage] = useState(null)
  
   const navigate = useNavigate()
   const dispatch = useDispatch() 
@@ -17,6 +18,8 @@ const ProductDetails = () => {
   useEffect(()=>{
     if(!isLoading){
       dispatch(fetchProductDetails(data))
+      console.log(data.images[0])
+      setMainImage(data.images[0])
       // console.log(data)
     }
   },[data])
@@ -34,17 +37,26 @@ const ProductDetails = () => {
         <button className="menu-btn" onClick={()=>navigate("/")}> MENU</button>
     </div>
     <div className="Product-details-container">
-        <div>
-            <img src={details.images[0]} alt="" />
+        <div className="sidebar-image-conatiner">
+          {details.images.map((image,i)=>{
+            return (
+              <img onClick={()=>setMainImage(image)} key={i} className={`${image==mainImage?"active-img":""} sidebar-image`} src={image} alt="" />
+            )
+          })}
         </div>
         <div>
-            <h3>{details.brand}</h3>
-            <h3>{details.title}</h3>
-            <div><span>{details.rating}</span></div>
-            <p>{details.description}</p>
-            <div>
-                <h4>${details.price}</h4>
-            </div>
+          <div>
+              <img className="main-img" src={mainImage} alt="" />
+          </div>
+          <div>
+              <h3>{details.brand}</h3>
+              <h3>{details.title}</h3>
+              <div><span>{details.rating}</span></div>
+              <p>{details.description}</p>
+              <div>
+                  <h4>${details.price}</h4>
+              </div>
+          </div>
         </div>
     </div>
   </>);

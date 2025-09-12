@@ -4,14 +4,12 @@
 .filter-container{
   margin: auto;
   display: flex;
+  flex-wrap: wrap;
   gap: 20px;
   justify-content: center;
   align-items: center;
 }
 .filter-container select{
-  /* font-size: 20px;
-  padding: 15px;
-  border-radius: 10px; */
   padding: 0.5rem 1rem;
   font-size: 1rem;
   border: 1px solid #ccc;
@@ -95,7 +93,21 @@
   border: none;
   border-radius: 15px;
 }
-.Product-details-container img{
+.main-img{
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(255, 254, 254) 0px 0px 0px 3px;
   width: 400px;
+}
+.sidebar-image-conatiner{
+  display: flex;
+  flex-direction: column;
+  justify-content:flex-start;
+}
+.sidebar-image{
+  border-radius:10px ;
+  width: 100px;
+  border: 2px solid gold;
+  margin: 12px;
+}
+.active-img{
+  border: 2px solid;
 }
