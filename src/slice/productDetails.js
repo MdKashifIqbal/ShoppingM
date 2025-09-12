@@ -1,6 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import ProductDetails from "../ProductDetails";
 
+
+// Demo
 export const fetchProductDetails = createAsyncThunk(
   "ProductDetails/fetchProductDetails",
   async ({ id }) => {
