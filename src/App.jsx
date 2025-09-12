@@ -4,7 +4,6 @@ import './App.css'
 import Cards from './Cards'
 import { Route, Routes } from 'react-router-dom'
 import ProductDetails from './ProductDetails'
-import Card2 from './Card2'
 
 function App() {
 
@@ -12,7 +11,6 @@ function App() {
     <>
     <Routes>
       <Route path="/" element={<Cards/>}/>
-      <Route path="/c" element={<Card2/>}/>
       <Route path="/product/:id" element={<ProductDetails/>}/>
     </Routes>
     </>
