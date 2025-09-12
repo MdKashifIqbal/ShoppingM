@@ -1,6 +1,7 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import { act, useEffect } from "react";
 import ProductDetails from "../ProductDetails";
+import { useQueries } from "@tanstack/react-query";
 
 const initialState = {
   allProducts: [],
@@ -11,25 +12,19 @@ const initialState = {
   error: null,
 };
 
-export const fetchProducts = createAsyncThunk(
-  "shoppingCard/fetchProducts",
-  async ({page_no, limit}) => {
-    try {
-      const res = await fetch(`https://dummyjson.com/products?limit=${limit}&skip=${(page_no-1)*limit}`);
-      const data = await res.json();
-      return { products: data.products, total: data.total };
-    } catch (error) {
-      console.log(error.message);
-    }
-  }
-);
-
-
 
 const shoppingCardSlice = createSlice({
   name: "shoppingCard",
   initialState,
   reducers: {
+    fetchProducts:(state,action)=>{
+      // console.log(action.payload)
+      const {products, total} = action.payload
+      state.allProducts = products
+      state.list = products
+      state.totalNumberOfButtons = total
+      state.loading = false
+    },
     sortByprice: (state, action) => {
       if (action.payload == "low-to-high") {
         state.list = state.list.sort((a, b) => a.price - b.price);
@@ -51,32 +46,14 @@ const shoppingCardSlice = createSlice({
         state.list = [...state.allProducts]
       }
     },
-  },
-  extraReducers: (builder) => {
-    builder
-      .addCase(fetchProducts.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
-      .addCase(fetchProducts.fulfilled, (state, action) => {
-        state.loading = false;
-        state.allProducts = action.payload.products;
-        state.list = action.payload.products;
-        state.totalNumberOfButtons = Math.ceil(
-          action.payload.total / state.limit
-        );
-        // console.log(state.totalNumberOfButtons)
-      })
-      .addCase(fetchProducts.rejected, (state) => {
-        state.loading = false;
-        state.error = action.error.message;
-      })
-  },
+  }
 });
 
 export const {
   sortByprice,
   searchByProductName,
   filterByCategory,
+  fetchProducts,
+
 } = shoppingCardSlice.actions;
 export default shoppingCardSlice.reducer;

@@ -8,26 +8,23 @@ import {
   sortByprice,
 } from "./slice/shoppingCardslice";
 import { useNavigate } from "react-router-dom";
+import { useProduct } from "./useProduct";
 
 const Cards = () => {
-  const {
-    list: productList,
-    loading,
-    totalNumberOfButtons,
-    limit
-  } = useSelector((state) => state.productList);
+  const { list, loading, totalNumberOfButtons, limit } = useSelector(
+    (state) => state.productList
+  );
   const dispatch = useDispatch();
   const [page_no, setPage_no] = useState(1);
-  const navigate = useNavigate()
-
-
-
+  const navigate = useNavigate();
+  const { data, isLoading, error } = useProduct({ limit, page_no });
 
   useEffect(() => {
-    dispatch(fetchProducts({ page_no, limit }));
-  }, [page_no]);
-
-  
+    if (!isLoading) {
+      // console.log(data.products);
+      dispatch(fetchProducts(data));
+    }
+  }, [data, page_no]);
 
   function handleSort(e) {
     // console.log(e.target.value)
@@ -37,7 +34,6 @@ const Cards = () => {
   function searchByTitle(title) {
     dispatch(searchByProductName(title));
   }
-
 
   return (
     <>
@@ -75,9 +71,13 @@ const Cards = () => {
       </div>
       <div className="container">
         {!loading ? (
-          productList.map((item) => {
+          list.map((item) => {
             return (
-              <div onClick={()=>navigate(`/product/${item.id}`)} className="cards" key={item.id}>
+              <div
+                key={item.id}
+                onClick={() => navigate(`/product/${item.id}`)}
+                className="cards"
+              >
                 <img src={item.thumbnail} alt="" />
                 <p>{item.title}</p>
                 <p>{item.category}</p>
@@ -90,12 +90,16 @@ const Cards = () => {
         )}
       </div>
       <div className="button-container">
-        {
-         Array.from({length:totalNumberOfButtons},(_,i)=>(
-          <button className={page_no==i+1?"active":""} onClick={()=>setPage_no(i+1)} key={i}>{i+1}</button>
-         ))
-        }
-        </div>
+        {Array.from({ length: Math.ceil(totalNumberOfButtons/limit) }, (_, i) => (
+          <button
+            className={page_no == i + 1 ? "active" : ""}
+            onClick={() => setPage_no(i + 1)}
+            key={i}
+          >
+            {i + 1}
+          </button>
+        ))}
+      </div>
     </>
   );
 };

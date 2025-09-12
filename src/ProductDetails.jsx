@@ -1,24 +1,26 @@
 import React, { use, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
+// import { fetchProductDetails } from "./slice/productDetails";
+import { useProduct } from "./useProduct";
 import { fetchProductDetails } from "./slice/productDetails";
 
 const ProductDetails = () => {
   const { id } = useParams();
-  const {details, loading, error} = useSelector((state) => state.productDetails);
+  const {details, loading} = useSelector((state) => state.productDetails);
  
   const navigate = useNavigate()
   const dispatch = useDispatch() 
 
-  useEffect(() => {
-    dispatch(fetchProductDetails({ id }));
-  }, []);
-  
+
+  const {data, isLoading, error} = useProduct({id})
+
   useEffect(()=>{
-    if(details){
-       console.log(details)
+    if(!isLoading){
+      dispatch(fetchProductDetails(data))
+      // console.log(data)
     }
-  },[details])
+  },[data])
 
   if(error) return <h1>Error......</h1>
   if(loading) return <h1>Loading.......</h1>
