@@ -83,8 +83,17 @@
   padding: 15px;
   /* border: 5px solid; */
   display: flex;
+  flex-wrap: wrap;
   align-items:start;
   gap: 15px;
+}
+.menu-btn{
+  background-color: blue;
+  color: white;
+  padding: 10px 20px;
+  font-size: 20px;
+  border: none;
+  border-radius: 15px;
 }
 .Product-details-container img{
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(255, 254, 254) 0px 0px 0px 3px;

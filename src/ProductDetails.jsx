@@ -1,7 +1,6 @@
 import React, { use, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-// import { fetchProductDetails } from "./slice/productDetails";
 import { useProduct } from "./useProduct";
 import { fetchProductDetails } from "./slice/productDetails";
 
@@ -30,8 +29,9 @@ const ProductDetails = () => {
   return (
   <>
     {/* Products Details {id} */}
+
     <div>
-        <button onClick={()=>navigate("/")}>MENU</button>
+        <button className="menu-btn" onClick={()=>navigate("/")}> MENU</button>
     </div>
     <div className="Product-details-container">
         <div>
