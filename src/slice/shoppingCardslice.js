@@ -12,18 +12,17 @@ const initialState = {
   error: null,
 };
 
-
 const shoppingCardSlice = createSlice({
   name: "shoppingCard",
   initialState,
   reducers: {
-    fetchProducts:(state,action)=>{
+    fetchProducts: (state, action) => {
       // console.log(action.payload)
-      const {products, total} = action.payload
-      state.allProducts = products
-      state.list = products
-      state.totalNumberOfButtons = total
-      state.loading = false
+      const { products, total } = action.payload;
+      state.allProducts = products;
+      state.list = products;
+      state.totalNumberOfButtons = total;
+      state.loading = false;
     },
     sortByprice: (state, action) => {
       if (action.payload == "low-to-high") {
@@ -38,15 +37,15 @@ const shoppingCardSlice = createSlice({
       );
     },
     filterByCategory: (state, action) => {
-      if(action.payload){
+      if (action.payload) {
         state.list = state.allProducts.filter(
           (product) => product.category == action.payload
         );
-      }else{
-        state.list = [...state.allProducts]
+      } else {
+        state.list = [...state.allProducts];
       }
     },
-  }
+  },
 });
 
 export const {
@@ -54,6 +53,5 @@ export const {
   searchByProductName,
   filterByCategory,
   fetchProducts,
-
 } = shoppingCardSlice.actions;
 export default shoppingCardSlice.reducer;
