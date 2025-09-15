@@ -1,21 +1,17 @@
-import { useQuery } from "@tanstack/react-query";
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+// import { use } from "react";
 
-export function useProduct({ limit, page_no, id }) {
-  return useQuery({
-    queryKey: ["product", limit, page_no, id],
-    queryFn: async () => {
-      let url = `https://dummyjson.com/products`;
-      if (id) {
-        const res = await fetch(`${url}/${id}`);
-        return res.json();
-      }
-      const res = await fetch(
-        `${url}?limit=${limit}&skip=${(page_no - 1) * limit}`
-      );
-      return res.json();
-    },
-    keepPreviousData: true,
-    staleTime:1000*60*5,
-    cacheTime:1000*60*10
-  });
-}
+export const productApi = createApi({
+  reducerPath: "productApi",
+  baseQuery: fetchBaseQuery({ baseUrl: "https://dummyjson.com/" }),
+  endpoints: (bulider) => ({
+    getProducts: bulider.query({
+      query: ({ limit = 10, page_no = 1, id }) =>
+        id
+          ? `products/${id}`
+          : `products?limit=${limit}&skip=${(page_no - 1) * limit}`,
+    }),
+  }),
+});
+
+export const { useGetProductsQuery } = productApi;

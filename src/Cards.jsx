@@ -8,7 +8,7 @@ import {
   sortByprice,
 } from "./slice/shoppingCardslice";
 import { useNavigate } from "react-router-dom";
-import { useProduct } from "./custom-hook/useProduct";
+import { useGetProductsQuery } from "./custom-hook/useProduct";
 
 const Cards = () => {
   const { list, loading, totalNumberOfButtons, limit } = useSelector(
@@ -17,7 +17,7 @@ const Cards = () => {
   const dispatch = useDispatch();
   const [page_no, setPage_no] = useState(1);
   const navigate = useNavigate();
-  const { data, isLoading, error } = useProduct({ limit, page_no });
+  const { data, isLoading, error } = useGetProductsQuery({ limit, page_no });
 
   useEffect(() => {
     if (!isLoading) {

@@ -1,7 +1,7 @@
 import React, { use, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { useProduct } from "./custom-hook/useProduct";
+import { productApi, useGetProductsQuery } from "./custom-hook/useProduct";
 import { fetchProductDetails } from "./slice/productDetails";
 
 const ProductDetails = () => {
@@ -12,7 +12,7 @@ const ProductDetails = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { data, isLoading, error } = useProduct({ id });
+  const { data, isLoading, error } = useGetProductsQuery({ id });
 
   useEffect(() => {
     if (!isLoading) {
