@@ -8,7 +8,7 @@ import {
   sortByprice,
 } from "./slice/shoppingCardslice";
 import { useNavigate } from "react-router-dom";
-import { useProduct } from "./useProduct";
+import { useProduct } from "./custom-hook/useProduct";
 
 const Cards = () => {
   const { list, loading, totalNumberOfButtons, limit } = useSelector(
@@ -90,15 +90,18 @@ const Cards = () => {
         )}
       </div>
       <div className="button-container">
-        {Array.from({ length: Math.ceil(totalNumberOfButtons/limit) }, (_, i) => (
-          <button
-            className={page_no == i + 1 ? "active" : ""}
-            onClick={() => setPage_no(i + 1)}
-            key={i}
-          >
-            {i + 1}
-          </button>
-        ))}
+        {Array.from(
+          { length: Math.ceil(totalNumberOfButtons / limit) },
+          (_, i) => (
+            <button
+              className={page_no == i + 1 ? "active" : ""}
+              onClick={() => setPage_no(i + 1)}
+              key={i}
+            >
+              {i + 1}
+            </button>
+          )
+        )}
       </div>
     </>
   );
