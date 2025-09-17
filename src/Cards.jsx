@@ -82,9 +82,8 @@ const Cards = () => {
             <option value="mobile-accessories">Mobile-Accessories</option>
           </select>
         </div>
-          
-        <div className="Logout" onClick={handleLogout}>
-          <button>Logout</button>
+          <div className="Logout" onClick={handleLogout}>
+            <button>Logout</button>
         </div>
       </div>
       <div className="container">

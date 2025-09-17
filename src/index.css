@@ -30,6 +30,15 @@
   outline: none;
   transition: all 0.3s ease;
 }
+.Logout button{
+  cursor: pointer;
+  margin-left:300px ;
+  background-color: blue;
+  color: white;
+  padding: 4px 15px;
+  font-size: 18px;
+  border-radius: 8px;
+}
 .container {
   margin-top: 20px;
   display: flex;
