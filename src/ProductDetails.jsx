@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { productApi, useGetProductsQuery } from "./custom-hook/useProduct";
 import { fetchProductDetails } from "./slice/productDetails";
+import { checkValidToken } from "./utils/utils";
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -13,6 +14,12 @@ const ProductDetails = () => {
   const dispatch = useDispatch();
 
   const { data, isLoading, error } = useGetProductsQuery({ id });
+
+  useEffect(()=>{
+    if(!checkValidToken()){
+    navigate("/login")
+  }
+  },[navigate])
 
   useEffect(() => {
     if (!isLoading) {

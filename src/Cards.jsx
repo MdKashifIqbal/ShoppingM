@@ -9,6 +9,8 @@ import {
 } from "./slice/shoppingCardslice";
 import { useNavigate } from "react-router-dom";
 import { useGetProductsQuery } from "./custom-hook/useProduct";
+import { jwtDecode } from "jwt-decode";
+import { checkValidToken } from "./utils/utils";
 
 const Cards = () => {
   const { list, loading, totalNumberOfButtons, limit } = useSelector(
@@ -18,6 +20,14 @@ const Cards = () => {
   const [page_no, setPage_no] = useState(1);
   const navigate = useNavigate();
   const { data, isLoading, error } = useGetProductsQuery({ limit, page_no });
+
+  // const token = localStorage.getItem("token");
+  // console.log(token)
+  useEffect(() => {
+    if(!checkValidToken()){
+      navigate("/login")
+    }
+  }, [navigate]);
 
   useEffect(() => {
     if (!isLoading) {

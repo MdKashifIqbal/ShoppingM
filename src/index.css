@@ -1,7 +1,7 @@
-*{
+* {
   font-family: sans-serif;
 }
-.filter-container{
+.filter-container {
   margin: auto;
   display: flex;
   flex-wrap: wrap;
@@ -9,7 +9,7 @@
   justify-content: center;
   align-items: center;
 }
-.filter-container select{
+.filter-container select {
   padding: 0.5rem 1rem;
   font-size: 1rem;
   border: 1px solid #ccc;
@@ -21,23 +21,23 @@
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-.filter-container input{
+.filter-container input {
   padding: 0.75rem 1rem;
-  padding-left: 2.5rem; 
+  padding-left: 2.5rem;
   border: 2px solid #ccc;
   border-radius: 25px;
   font-size: 1rem;
   outline: none;
-  transition: all 0.3s ease;;
+  transition: all 0.3s ease;
 }
-.container{
+.container {
   margin-top: 20px;
   display: flex;
   flex-wrap: wrap;
   gap: 15px;
   justify-content: center;
 }
-.cards{
+.cards {
   cursor: pointer;
   border-radius: 15px;
   min-width: 450px;
@@ -46,26 +46,25 @@
   border: 1px solid;
   align-items: center;
 }
-.cards img{
+.cards img {
   max-width: 100%;
   max-height: 150px;
 }
-.cards p:nth-child(3){
-  
+.cards p:nth-child(3) {
   padding: 15px 10px;
   min-width: 50px;
   background-color: rgb(160, 85, 230);
   border-radius: 15px;
   color: white;
 }
-.button-container{
-  margin-top:30px ;
+.button-container {
+  margin-top: 30px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 10px;
 }
-.button-container button{
+.button-container button {
   background-color: blue;
   cursor: pointer;
   color: white;
@@ -73,19 +72,19 @@
   padding: 10px 15px;
   border-radius: 10px;
 }
-.active{
+.active {
   background-color: red !important;
 }
 
-.Product-details-container{
+.Product-details-container {
   padding: 15px;
   /* border: 5px solid; */
   display: flex;
   flex-wrap: wrap;
-  align-items:start;
+  align-items: start;
   gap: 15px;
 }
-.menu-btn{
+.menu-btn {
   background-color: blue;
   color: white;
   padding: 10px 20px;
@@ -93,21 +92,124 @@
   border: none;
   border-radius: 15px;
 }
-.main-img{
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(255, 254, 254) 0px 0px 0px 3px;
+.main-img {
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px,
+    rgb(255, 254, 254) 0px 0px 0px 3px;
   width: 400px;
 }
-.sidebar-image-conatiner{
+.sidebar-image-conatiner {
   display: flex;
   flex-direction: column;
-  justify-content:flex-start;
+  justify-content: flex-start;
 }
-.sidebar-image{
-  border-radius:10px ;
+.sidebar-image {
+  border-radius: 10px;
   width: 100px;
   border: 2px solid gold;
   margin: 12px;
 }
-.active-img{
+.active-img {
   border: 2px solid;
+}
+
+.sign-up-form-container {
+  border: 1px solid rgb(208, 208, 215);
+  border-radius: 15px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  width: 35%;
+  margin: auto;
+}
+.sign-up-form-container h2 {
+  text-align: center;
+  font-weight: 700;
+  font-size: 30px;
+}
+.sign-up-form-container form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.sign-up-form-container form label {
+  font-size: 20px;
+  margin-top: 15px;
+}
+.sign-up-form-container form input {
+  margin-top: 5px;
+  width: 250px;
+  height: 30px;
+  padding: 7px;
+  border-radius: 10px;
+}
+.sign-up-form-container form button {
+  margin: 15px;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: blue;
+  color: white;
+  width: 45%;
+  cursor: pointer;
+}
+.sign-up-form-container > div {
+  /* border: 1px solid; */
+  font-size: 15px;
+  color: blue;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+}
+
+.sign-in-container {
+  border: 1px solid rgb(208, 208, 215);
+  border-radius: 15px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+  width: 30%;
+  margin: auto;
+}
+.sign-in-container form> div{
+  margin-top: 10px;
+}
+.sign-in-container h2 {
+  text-align: center;
+  font-weight: 700;
+  font-size: 30px;
+}
+.sign-in-container form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+.sign-in-container label{
+ 
+  font-size: 17px;
+  margin-top: 15px;
+
+}
+.sign-in-container form input {
+  margin-top: 10px;
+  width: 250px;
+  height: 25px;
+  padding: 7px;
+  border-radius: 5px;
+  border: 1px solid rgb(123, 113, 113);
+}
+.sign-in-container form button{
+  margin: 15px;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: blue;
+  color: white;
+  width: 60%;
+  cursor: pointer;
+}
+.sign-in-container > div{
+   font-size: 15px;
+  color: blue;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
 }
