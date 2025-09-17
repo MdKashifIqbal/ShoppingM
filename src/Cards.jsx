@@ -44,7 +44,11 @@ const Cards = () => {
   function searchByTitle(title) {
     dispatch(searchByProductName(title));
   }
-
+  function handleLogout(){
+    localStorage.removeItem("token")
+    navigate("/login")
+    console.log("clicked")
+  }
   return (
     <>
       <div className="filter-container">
@@ -77,6 +81,10 @@ const Cards = () => {
             <option value="laptops">Laptops</option>
             <option value="mobile-accessories">Mobile-Accessories</option>
           </select>
+        </div>
+          
+        <div className="Logout" onClick={handleLogout}>
+          <button>Logout</button>
         </div>
       </div>
       <div className="container">
