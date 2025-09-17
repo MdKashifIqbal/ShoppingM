@@ -4,7 +4,7 @@ import "./App.css";
 import Cards from "./Cards";
 import { Route, Routes } from "react-router-dom";
 import ProductDetails from "./ProductDetails";
-import SignUp from "./components/SIgnup";
+import SignUp from "./components/Signup";
 import Signin from "./components/Login";
 
 function App() {

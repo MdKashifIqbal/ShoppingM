@@ -13,24 +13,25 @@ import { jwtDecode } from "jwt-decode";
 import { checkValidToken } from "./utils/utils";
 
 const Cards = () => {
+  const isValid = checkValidToken()
   const { list, loading, totalNumberOfButtons, limit } = useSelector(
     (state) => state.productList
   );
   const dispatch = useDispatch();
   const [page_no, setPage_no] = useState(1);
   const navigate = useNavigate();
-  const { data, isLoading, error } = useGetProductsQuery({ limit, page_no });
+  const { data, isLoading, error } = useGetProductsQuery({ limit, page_no },{skip:!isValid});
 
   // const token = localStorage.getItem("token");
   // console.log(token)
   useEffect(() => {
-    if(!checkValidToken()){
+    if(!isValid){
       navigate("/login")
     }
-  }, [navigate]);
+  }, []);
 
   useEffect(() => {
-    if (!isLoading) {
+    if (!isLoading && isValid) {
       // console.log(data.products);
       dispatch(fetchProducts(data));
     }

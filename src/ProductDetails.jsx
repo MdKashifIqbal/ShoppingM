@@ -6,6 +6,7 @@ import { fetchProductDetails } from "./slice/productDetails";
 import { checkValidToken } from "./utils/utils";
 
 const ProductDetails = () => {
+  const isValid = checkValidToken();
   const { id } = useParams();
   const { details, loading } = useSelector((state) => state.productDetails);
   const [mainImage, setMainImage] = useState(null);
@@ -13,16 +14,19 @@ const ProductDetails = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { data, isLoading, error } = useGetProductsQuery({ id });
-
-  useEffect(()=>{
-    if(!checkValidToken()){
-    navigate("/login")
-  }
-  },[navigate])
+  const { data, isLoading, error } = useGetProductsQuery(
+    { id },
+    { skip: !isValid }
+  );
+  useEffect(() => {
+    if (!isValid) {
+      navigate("/login");
+      return;
+    }
+  }, []);
 
   useEffect(() => {
-    if (!isLoading) {
+    if (!isLoading && isValid) {
       dispatch(fetchProductDetails(data));
       console.log(data.images[0]);
       setMainImage(data.images[0]);
